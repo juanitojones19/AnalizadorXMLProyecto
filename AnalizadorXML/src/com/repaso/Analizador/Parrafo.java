@@ -20,14 +20,11 @@ public class Parrafo implements Analizable{
 		this.texto = entrada;
 		String[] arregloOraciones = separarOraciones(entrada);
         numeroOraciones = arregloOraciones.length;
-		//Map<String,Integer> articulos = new HashMap<String,Integer>();
+
 		for(int i = 0; i < arregloOraciones.length; i++ )
 		{
 			listaOraciones.add(new Oracion(arregloOraciones[i]));
 			totalPalabras += listaOraciones.get(i).contarPalabras();
-
-			//establecerContadorArticulos(listaOraciones.get(i).contarArticulos());
-
 
             //almancena el numero total de  vocales ene l parrafo
             contadorVocales += listaOraciones.get(i).contarVocales();
@@ -36,25 +33,6 @@ public class Parrafo implements Analizable{
             contadorArticulos += listaOraciones.get(i).contarArticulos();
 		}
 	}
-
-    /*
-	private void establecerContadorArticulos(Map<String, Integer> articulos)
-	{
-		int total = articulos.get("las") + contadorArticulos.get("las");
-		contadorArticulos.put("las", total );
-		
-		total = articulos.get("el") + contadorArticulos.get("el");
-		contadorArticulos.put("el", total );
-		
-		total = articulos.get("la") + contadorArticulos.get("la");
-		contadorArticulos.put("la", total );
-		
-		total = articulos.get("los") + contadorArticulos.get("los");
-		contadorArticulos.put("los", total );
-		
-	}
-	*/
-
 
 	public int contarPalabras() {
 		// TODO Auto-generated method stub

@@ -44,7 +44,6 @@ public class Palabra implements Analizable
 		return 1;
 	}
 
-
 	public boolean esEOF(String palabra) {
 		// TODO Auto-generated method stub
 		return palabra.equals("EOF");
@@ -66,10 +65,9 @@ public class Palabra implements Analizable
 		return contadorVocales;
 	}
 
-	
 	public int contarArticulos() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-}
+}// fin de la clase Palabra

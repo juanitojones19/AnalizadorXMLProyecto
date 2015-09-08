@@ -85,6 +85,4 @@ public class Oracion implements Analizable
         return contadorArticulos;
     }
 
-	
-
-}
+}// fin de la clase Oraciones
