@@ -30,7 +30,6 @@ public class Analizador {
 		*/
 		//Archivo
 		LectorArchivo lectorArchivo = new LectorArchivo("/Users/Juanito/Documents/Parrafo.txt");
-		System.out.println("Hola mundo");
 		//Parrafo parrafoArchivo = new Parrafo(lectorArchivo.obtenerTexto());
 		/*
 		System.out.println("Vocal a: " + parrafoArchivo.contarVocales()[0]);
