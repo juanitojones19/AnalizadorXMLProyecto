@@ -9,18 +9,26 @@ import java.util.Map;
  */
 public class Documento implements Analizable
 {
-    private int contadorParrafo;
+    private int contadorParrafo;// variable que almacena elnumero total de parrafos
     private List<Parrafo> listaParrafo = new ArrayList<Parrafo>();
+    private int contadorVocales;// variable que almacena el numero total de vocales
+    private int contadorArticulos; //variable que almacena el numeor total de articulos
+    private int contadorOraciones;
+    private int contadorParrafos;
 
 
     public Documento(String texto)
     {
         String[] arregloParrafos = separar(texto);
+        contadorParrafos = arregloParrafos.length;
         //se agregan los parrafos a la listaParrafo
         for ( int i = 0; i < arregloParrafos.length; i++  )
         {
             listaParrafo.add(new Parrafo(arregloParrafos[i]));
             contadorParrafo += listaParrafo.get(i).contarPalabras();
+            contadorVocales += listaParrafo.get(i).contarVocales();
+            contadorArticulos += listaParrafo.get(i).contarArticulos();
+            contadorOraciones += listaParrafo.get(i).obtenerNumeroOraciones();
         }
     }
 
@@ -28,20 +36,30 @@ public class Documento implements Analizable
         return false;
     }
 
-    public int[] contarVocales() {
-        return new int[0];
+    public int contarVocales() {
+        return contadorVocales;
     }
 
     public int contarPalabras() {
         return contadorParrafo;
     }
 
-    public Map<String, Integer> contarArticulos() {
-        return null;
+    public int contarArticulos() {
+        // TODO Auto-generated method stub
+        return contadorArticulos;
+    }
+
+    public int contarOraciones(){
+        return contadorOraciones;
+    }
+
+    public int contarParrafos(){
+        return contadorParrafos;
     }
 
     public String[] separar(String texto) {
         String[] arregloParrafo = texto.split("(\\n\\r)+\\n");
         return arregloParrafo;
     }
-}
+
+}// fin de la clase

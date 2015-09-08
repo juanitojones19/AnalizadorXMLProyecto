@@ -7,7 +7,9 @@ import java.util.Map;
 public class Palabra implements Analizable
 {
 	private String texto;
-	private int[] vocales = new int[5];
+
+    //contador que almacena el numero total de vocales
+    private int contadorVocales;
 	
 	public Palabra(String entrada)
 	{
@@ -24,15 +26,15 @@ public class Palabra implements Analizable
         //System.out.print(letra.getClass());
         if(letra.equals("a") || letra.equals("A"))
 		{
-			vocales[0] += 1; 
+            contadorVocales += 1;
 		}else if(letra.equals("e") || letra.equals("E")){
-			vocales[1] += 1;
+            contadorVocales += 1;
 		}else if (letra.equals("i") || letra.equals("I") ){
-			vocales[2] += 1;
+            contadorVocales += 1;
 		}else if (letra.equals("o") || letra.equals("O")){
-			vocales[3] += 1;
+            contadorVocales += 1;
 		}else if (letra.equals("u") || letra.equals("U")){
-			vocales[4] += 1;
+            contadorVocales += 1;
 		}
 	}// fin de establecerContadorVocales
 
@@ -59,16 +61,15 @@ public class Palabra implements Analizable
 		return arregloPalabra;
 	}
 
-	
-	public int[] contarVocales() {
+	public int contarVocales() {
 		// TODO Auto-generated method stub
-		return vocales;
+		return contadorVocales;
 	}
 
 	
-	public Map<String, Integer> contarArticulos() {
+	public int contarArticulos() {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 
 }

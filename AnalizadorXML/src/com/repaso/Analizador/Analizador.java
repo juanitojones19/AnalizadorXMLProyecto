@@ -32,7 +32,11 @@ public class Analizador {
 		LectorArchivo lectorArchivo = new LectorArchivo("/Users/Sintelti/Documents/Parrafos.txt");
 		//Parrafo parrafoArchivo = new Parrafo(lectorArchivo.obtenerTexto());
         Documento documento = new Documento(lectorArchivo.obtenerTexto());
-        System.out.print("Numero total del  palabras en el Documento: " + documento.contarPalabras());
+        System.out.println("Numero de Parrafos: " + documento.contarParrafos());
+        System.out.println("Numero de Oraciones: " + documento.contarOraciones());
+        System.out.println("Numero de palabras: " + documento.contarPalabras());
+        System.out.println("Numero de vocales: " + documento.contarVocales());
+        System.out.println("Numero de articulos: " + documento.contarArticulos());
 		/*
 		System.out.println("Vocal a: " + parrafoArchivo.contarVocales()[0]);
 		System.out.println("Vocal e: " + parrafoArchivo.contarVocales()[1]);

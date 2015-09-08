@@ -10,17 +10,14 @@ public class Oracion implements Analizable
 	private String oracion;
 	private int totalPalabras = 0;
 	private List<Palabra> listaPalabras = new ArrayList<Palabra>();
-	private int[] contadorVocales = new int[5];
-	private Map<String,Integer> contadorArticulos = new HashMap<String,Integer>();
+	private int contadorVocales;
+    private int contadorArticulos;
+	private final String[] articulos = {"el", "la","los", "las", "un", "una", "unos", "unas"};
+
 	
 	public Oracion(String entrada)
 	{
 		this.oracion = entrada;
-		int[] vocales = new int[5];
-		contadorArticulos.put("las", 0);
-		contadorArticulos.put("el", 0);
-		contadorArticulos.put("los", 0);
-		contadorArticulos.put("la", 0);
 
 		String[] arregloPalabras = separar(oracion);
 		for(int i = 0; i < arregloPalabras.length; i++)
@@ -28,8 +25,9 @@ public class Oracion implements Analizable
 			//impresion de consola de prueba
 			listaPalabras.add(new Palabra(arregloPalabras[i]));
 			//totalPalabras++;
-			vocales = listaPalabras.get(i).contarVocales();
-			establecerContadorVocales(vocales);
+
+            contadorVocales += listaPalabras.get(i).contarVocales();
+
 			establecerContadorArticulos(arregloPalabras[i]);
 			if(!listaPalabras.get(i).esEOF(arregloPalabras[i]))
 			{
@@ -40,22 +38,16 @@ public class Oracion implements Analizable
 	
 	private void establecerContadorArticulos(String palabra)
 	{
-		int contador = 1;
-		if(contadorArticulos.containsKey(palabra))
-		{
-			contador += contadorArticulos.get(palabra);
-			contadorArticulos.put(palabra, contador );
-		}
-	}
-	
-	private void establecerContadorVocales(int[] vocales)
-	{
-		contadorVocales[0] += vocales[0];
-		contadorVocales[1] += vocales[1];
-		contadorVocales[2] += vocales[2];
-		contadorVocales[3] += vocales[3];
-		contadorVocales[4] += vocales[4];
-	}
+		for(int i = 0; i < articulos.length; i++ )
+        {
+            if(articulos[i].equals(palabra.toLowerCase()))
+            {
+                contadorArticulos += 1;
+            }
+        }
+
+	}// fin del metodo establecerContadorArticulos
+
 
 	//metodo que cuenta el numero total de palabras en una "Oracion"
 	public int contarPalabras() {
@@ -82,16 +74,17 @@ public class Oracion implements Analizable
 		return false;
 	}
 
-
-	public int[] contarVocales() {
+    //regrsa el valor de la variable contador Vocales
+	public int contarVocales() {
 		// TODO Auto-generated method stub
 		return contadorVocales;
 	}
 
-	public Map<String, Integer> contarArticulos() {
-		// TODO Auto-generated method stub
-		return contadorArticulos;
-	}
+    public int contarArticulos() {
+        // TODO Auto-generated method stub
+        return contadorArticulos;
+    }
+
 	
 
 }

@@ -10,30 +10,34 @@ public class Parrafo implements Analizable{
 	private String texto;
 	private List<Oracion> listaOraciones = new ArrayList<Oracion>();
 	private int totalPalabras;
-	private int[] contadorVocales = new int[5];
-	private Map<String,Integer> contadorArticulos = new HashMap<String,Integer>();
+	private int contadorVocales;//almacena elnumero total de vocales en el parrafo
+    private int contadorArticulos;
+    private int numeroOraciones; // almacena el numero de oraciones en el parrafo
+
 	
 	public Parrafo(String entrada)
 	{
 		this.texto = entrada;
 		String[] arregloOraciones = separarOraciones(entrada);
-		int[] vocales = new int[5];
+        numeroOraciones = arregloOraciones.length;
 		//Map<String,Integer> articulos = new HashMap<String,Integer>();
-		contadorArticulos.put("las", 0);
-		contadorArticulos.put("el", 0);
-		contadorArticulos.put("los", 0);
-		contadorArticulos.put("la", 0);
 		for(int i = 0; i < arregloOraciones.length; i++ )
 		{
 			listaOraciones.add(new Oracion(arregloOraciones[i]));
 			totalPalabras += listaOraciones.get(i).contarPalabras();
-			vocales = listaOraciones.get(i).contarVocales();
-			establecerContadorVocales(vocales);
-			//articulos = listaOraciones.get(i).contarArticulos();
-			establecerContadorArticulos(listaOraciones.get(i).contarArticulos());
+
+			//establecerContadorArticulos(listaOraciones.get(i).contarArticulos());
+
+
+            //almancena el numero total de  vocales ene l parrafo
+            contadorVocales += listaOraciones.get(i).contarVocales();
+
+            //almacena el numero total de articulos en el parrafo;
+            contadorArticulos += listaOraciones.get(i).contarArticulos();
 		}
 	}
-	
+
+    /*
 	private void establecerContadorArticulos(Map<String, Integer> articulos)
 	{
 		int total = articulos.get("las") + contadorArticulos.get("las");
@@ -49,16 +53,8 @@ public class Parrafo implements Analizable{
 		contadorArticulos.put("los", total );
 		
 	}
-	
-	private void establecerContadorVocales(int[] vocales)
-	{
-		contadorVocales[0] += vocales[0];
-		contadorVocales[1] += vocales[1];
-		contadorVocales[2] += vocales[2];
-		contadorVocales[3] += vocales[3];
-		contadorVocales[4] += vocales[4];
-		
-	}
+	*/
+
 
 	public int contarPalabras() {
 		// TODO Auto-generated method stub
@@ -86,15 +82,20 @@ public class Parrafo implements Analizable{
 	}
 
 	
-	public int[] contarVocales() {
+	public int contarVocales() {
 		// TODO Auto-generated method stub
 		return contadorVocales;
 	}
 
-	
-	public Map<String, Integer> contarArticulos() {
-		// TODO Auto-generated method stub
-		return contadorArticulos;
-	}
 
-}
+    public int contarArticulos() {
+        // TODO Auto-generated method stub
+        return contadorArticulos;
+    }
+
+    public int obtenerNumeroOraciones()
+    {
+        return  numeroOraciones;
+    }
+
+}// fin de la clase
