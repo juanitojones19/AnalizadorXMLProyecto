@@ -67,7 +67,7 @@ public class Oracion implements Analizable
 	public String[] separar(String texto) {
 		// TODO Auto-generated method stub
 		texto = texto.replaceAll("[\\.\\,]", "");
-		String[] arregloPalabras = texto.split("\\s");
+		String[] arregloPalabras = texto.split("(\\s)+");
 		return arregloPalabras;
 	}
 
