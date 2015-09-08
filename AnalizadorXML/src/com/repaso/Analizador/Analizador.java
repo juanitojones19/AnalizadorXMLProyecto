@@ -29,8 +29,10 @@ public class Analizador {
 		System.out.println("total palabras: " + parrafoMultiLinea.contarPalabras());
 		*/
 		//Archivo
-		LectorArchivo lectorArchivo = new LectorArchivo("/Users/Juanito/Documents/Parrafo.txt");
+		LectorArchivo lectorArchivo = new LectorArchivo("/Users/Sintelti/Documents/Parrafos.txt");
 		//Parrafo parrafoArchivo = new Parrafo(lectorArchivo.obtenerTexto());
+        Documento documento = new Documento(lectorArchivo.obtenerTexto());
+        System.out.print("Numero total del  palabras en el Documento: " + documento.contarPalabras());
 		/*
 		System.out.println("Vocal a: " + parrafoArchivo.contarVocales()[0]);
 		System.out.println("Vocal e: " + parrafoArchivo.contarVocales()[1]);
