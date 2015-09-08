@@ -11,20 +11,29 @@ import java.util.StringTokenizer;
 public class LectorArchivo 
 {
 	private String texto;
-	public LectorArchivo( String ruta ) throws FileNotFoundException, IOException
+	public LectorArchivo( String ruta )
     {
-        int caracter;
-        String letras;
-        texto = "";
-        FileReader f = new FileReader(ruta);
-        BufferedReader b = new BufferedReader(f);
-        while((caracter = b.read())!= -1) {
-            //System.out.println(caracter);
-            letras = "" + (char)caracter;
-            texto += letras;
-            //System.out.print(texto);
+        try
+        {
+            int caracter;
+            String letras;
+            texto = "";
+            FileReader f = new FileReader(ruta);
+            BufferedReader b = new BufferedReader(f);
+            while((caracter = b.read())!= -1) {
+                //System.out.println(caracter);
+                letras = "" + (char)caracter;
+                texto += letras;
+                //System.out.print(texto);
+            }
+            b.close();
+        }catch(FileNotFoundException error){
+            error.printStackTrace();
+
+        }catch (IOException error){
+            error.printStackTrace();
         }
-        b.close();
+
     }// fin del constructor
 	
 	public String obtenerTexto()
