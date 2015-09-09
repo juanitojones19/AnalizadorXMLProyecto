@@ -17,19 +17,50 @@ public class Lista
 
     public Lista(String texto)
     {
-        String[] lista = llenarLista(texto);
-        for (int i = 0; i < lista.length; i++)
-        {
-            System.out.println(lista[i]);
-        }
+        llenarLista(texto);
     }// fin del constructor
 
-    public String[] llenarLista(String texto)
+    //metodo que llenar una List a partir de un String obtenido de un archivo txt o un String
+    public void  llenarLista(String texto)
     {
-        String[] arregloLista = texto.split("(\\n)+");
+        //Si texto es diferente de null llenar lista
+        if(texto != null)
+        {
+            String[] arregloLista = texto.split("(\\n)+");
+            for(int i = 0; i < arregloLista.length; i++)
+            {
+                lista.add(arregloLista[i]);
+            }
 
-        return arregloLista;
+        }else{// de lo contrario
+            System.out.println("Lista es null");
+        }// fin de else - if
+
+    }// fin del metodo llenarLista
+
+    //se obitne una List
+    public List<String> obtenerLista(){
+        return lista;
+    }//fin del metodo obtenerLista
+
+
+    //metodo que busca un elemento en una Lista
+    public boolean estaElemento(String elemento)
+    {
+        boolean bandera = false;
+        //System.out.println(obtenerLista().get(0).equalsIgnoreCase("hola"));
+        String palabraBuscar = elemento;
+        for (int i = 0; i < obtenerLista().size(); i++)
+        {
+            //System.out.println(obtenerLista().get(i).compareTo(elemento));
+        }
+
+
+
+        return obtenerLista().toString().equals(new String(elemento));
     }
+
+
 
 
 
