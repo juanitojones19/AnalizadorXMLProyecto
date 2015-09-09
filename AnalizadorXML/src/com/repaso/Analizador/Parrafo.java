@@ -76,4 +76,9 @@ public class Parrafo implements Analizable{
         return  numeroOraciones;
     }
 
+    public List<Oracion> obtenerListaOraciones()
+    {
+        return listaOraciones;
+    }
+
 }// fin de la clase

@@ -62,4 +62,9 @@ public class Documento implements Analizable
         return arregloParrafo;
     }
 
+    public List<Parrafo> obtenerListaParrafos()
+    {
+        return listaParrafo;
+    }
+
 }// fin de la clase

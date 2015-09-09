@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class Lista
 {
-    private List<String> lista = new ArrayList<String>();
+    private ArrayList<String> lista = new ArrayList<String>();
     private String texto;
 
     public Lista(String texto)
@@ -29,7 +29,7 @@ public class Lista
             String[] arregloLista = texto.split("(\\n)+");
             for(int i = 0; i < arregloLista.length; i++)
             {
-                lista.add(arregloLista[i]);
+                lista.add(arregloLista[i].replace("\r", ""));
             }
 
         }else{// de lo contrario
@@ -47,17 +47,7 @@ public class Lista
     //metodo que busca un elemento en una Lista
     public boolean estaElemento(String elemento)
     {
-        boolean bandera = false;
-        //System.out.println(obtenerLista().get(0).equalsIgnoreCase("hola"));
-        String palabraBuscar = elemento;
-        for (int i = 0; i < obtenerLista().size(); i++)
-        {
-            //System.out.println(obtenerLista().get(i).compareTo(elemento));
-        }
-
-
-
-        return obtenerLista().toString().equals(new String(elemento));
+        return obtenerLista().contains(elemento);
     }
 
 
