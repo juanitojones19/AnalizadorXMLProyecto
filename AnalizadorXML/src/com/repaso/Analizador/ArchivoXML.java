@@ -19,8 +19,8 @@ import java.io.File;
  */
 public class ArchivoXML
 {
-    Document doc;
-    Element documento;
+    private Document doc;
+    private Element documento;
     public ArchivoXML()
     {
         crearDocumentoXML();
@@ -45,33 +45,28 @@ public class ArchivoXML
     }// fin del metodo crearDocumetnoXML
 
 
-    public void crearTagsParrafoOracion(int numeroParrafo, int numeroOraciones)
+    public void crearTagsParrafoOracion(Documento objDcumento )
     {
 
-        for(int i = 0; i < numeroParrafo; i++)
+        for(Parrafo objParrafo : objDcumento.obtenerListaParrafos() )
         {
             Element parrafo = doc.createElement("Parrafo");
-            for(int j = 0; j < numeroOraciones; j++)
+            for(Oracion objOracion : objParrafo.obtenerListaOraciones())
             {
-                //crea tag dentro del tag principal
-                //parrafo.setTextContent("Texto dentro en hijo");
-
-                //taga oracion que ira dentro del tag parrafo
                 Element oracion = doc.createElement("Oracion");
-                oracion.setTextContent("El lobo azul");
-
-
-                //se agrega tag de oracion dentro del tag parrafo
+                oracion.setTextContent(objOracion.obtenerOracion());
                 parrafo.appendChild(oracion);
-            }// fin del for interno
-
-            //se agrega tag de parrafo al tag principal tag documento
+            }
             documento.appendChild(parrafo);
-
-        }//fin del for externo
-
+        }
 
     }// fin del elemento crearTagParrafoOracion
+
+    public void crearTagAnalizar(Documento objDocument)
+    {
+        Element analisis = doc.createElement("Analisis");
+        analisis.setAttribute("Parrafos" , Integer.toString(objDocument.contarPalabras()));;
+    }
 
     //crear documento XML
     public void crearXML()

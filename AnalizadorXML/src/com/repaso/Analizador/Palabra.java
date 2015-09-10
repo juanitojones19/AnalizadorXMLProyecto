@@ -7,6 +7,8 @@ import java.util.Map;
 public class Palabra implements Analizable
 {
 	private String texto;
+	private boolean conocida;
+	private boolean prohibida;
 
     //contador que almacena el numero total de vocales
     private int contadorVocales;
@@ -69,5 +71,15 @@ public class Palabra implements Analizable
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	public void esConocida(){
+
+	}
+
+	public String obtenerPalabra()
+	{
+		return texto;
+	}
+
 
 }// fin de la clase Palabra

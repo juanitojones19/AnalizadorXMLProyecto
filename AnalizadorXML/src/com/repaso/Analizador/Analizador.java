@@ -27,32 +27,36 @@ public class Analizador {
 		Parrafo parrafoMultiLinea = new Parrafo(lectorMulti.obtenerMultiLinea());
 		System.out.println("total palabras: " + parrafoMultiLinea.contarPalabras());
 		*/
-		//Archivo
-		LectorArchivo lectorArchivo = new LectorArchivo("/Users/Sintelti/Documents/Parrafos.txt");
+		//lista
+		LectorArchivo leerLista = new LectorArchivo("/Users/Juanito/Documents/palabrasConocidas.txt");
+		LectorArchivo leerProhibidas = new LectorArchivo("/Users/Juanito/Documents/palabrasProhibidas.txt");
+		Lista diccionario = new Lista(leerLista.obtenerTexto(), leerProhibidas.obtenerTexto());
+
+
+		LectorArchivo lectorArchivo = new LectorArchivo("/Users/Juanito/Documents/Parrafo.txt");
 		//LectorArchivo lectorArchivo = new LectorArchivo("/Users/JC/Documents/Parrafo.txt");
 		//Parrafo parrafoArchivo = new Parrafo(lectorArchivo.obtenerTexto());
+
+		//archivo
         Documento documento = new Documento(lectorArchivo.obtenerTexto());
-        System.out.println("Numero de Parrafos: " + documento.contarParrafos());
-        System.out.println("Numero de Oraciones: " + documento.contarOraciones());
-        System.out.println("Numero de palabras: " + documento.contarPalabras());
-        System.out.println("Numero de vocales: " + documento.contarVocales());
-        System.out.println("Numero de articulos: " + documento.contarArticulos());
+        //System.out.println("Numero de Parrafos: " + documento.contarParrafos());
+        //System.out.println("Numero de Oraciones: " + documento.contarOraciones());
+        //System.out.println("Numero de palabras: " + documento.contarPalabras());
+        //System.out.println("Numero de vocales: " + documento.contarVocales());
+        //System.out.println("Numero de articulos: " + documento.contarArticulos());
+		System.out.println("Numero de Conocidas: " + documento.contarConocidas());
 
-        LectorArchivo leerLista = new LectorArchivo("/Users/Sintelti/Documents/palabrasConocidas.txt");
-        Lista listaConocidas = new Lista(leerLista.obtenerTexto());
+		//Lista listaProhibidas = new Lista(leerProhibidas.obtenerTexto());
 
-
-        System.out.println(documento.obtenerListaParrafos().size());
-        int parrafos = documento.obtenerListaParrafos().size();
-
-        //System.out.println(documento.obtenerListaParrafos().get(1).obtenerListaOraciones().get(0).toString());
-        int oraciones = documento.obtenerListaParrafos().get(1).obtenerListaOraciones().size();
-
+		//diccionario.estaElemento(documento.obtenerListaParrafos().get(0).obtenerListaOraciones().get(0));
+		//diccionario.censurarPalabra(documento.obtenerListaParrafos().get(0).obtenerListaOraciones().get(0));
+		//listaProhibidas.censurarPalabra(documento.obtenerListaParrafos().get(0).obtenerListaOraciones().get(0));
 
 
 
         ArchivoXML archivoxml = new ArchivoXML();
-        archivoxml.crearTagsParrafoOracion(parrafos,oraciones);
+        archivoxml.crearTagsParrafoOracion(documento);
+		archivoxml.crearTagAnalizar(documento);
         archivoxml.crearXML();
 
 	}// fin de main

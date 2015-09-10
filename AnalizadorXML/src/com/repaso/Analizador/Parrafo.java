@@ -13,6 +13,7 @@ public class Parrafo implements Analizable{
 	private int contadorVocales;//almacena elnumero total de vocales en el parrafo
     private int contadorArticulos;
     private int numeroOraciones; // almacena el numero de oraciones en el parrafo
+	private int numeroConocidas;
 
 	
 	public Parrafo(String entrada)
@@ -23,8 +24,15 @@ public class Parrafo implements Analizable{
 
 		for(int i = 0; i < arregloOraciones.length; i++ )
 		{
+
 			listaOraciones.add(new Oracion(arregloOraciones[i]));
 			totalPalabras += listaOraciones.get(i).contarPalabras();
+
+			// si hay palabras en oracion conocidas las cuenta
+			if(Lista.estaElemento(new Oracion(arregloOraciones[i])))
+			{
+				numeroConocidas += 1;
+			}
 
             //almancena el numero total de  vocales ene l parrafo
             contadorVocales += listaOraciones.get(i).contarVocales();
@@ -70,6 +78,10 @@ public class Parrafo implements Analizable{
         // TODO Auto-generated method stub
         return contadorArticulos;
     }
+
+	public int obtenerConocidas(){
+		return numeroConocidas;
+	}
 
     public int obtenerNumeroOraciones()
     {

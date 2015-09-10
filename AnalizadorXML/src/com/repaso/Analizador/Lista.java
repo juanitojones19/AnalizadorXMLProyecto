@@ -12,16 +12,18 @@ import java.util.List;
  */
 public class Lista
 {
-    private ArrayList<String> lista = new ArrayList<String>();
+    private static ArrayList<Palabra> lista = new ArrayList<Palabra>();
+    private static ArrayList<Palabra> listaProhibidas = new ArrayList<Palabra>();
     private String texto;
 
-    public Lista(String texto)
+    public Lista(String textoConocidas, String textoProhibidas)
     {
-        llenarLista(texto);
+        llenarListaConocidas(textoConocidas);
+        llenarListaProhibidas(textoProhibidas);
     }// fin del constructor
 
     //metodo que llenar una List a partir de un String obtenido de un archivo txt o un String
-    public void  llenarLista(String texto)
+    public void  llenarListaConocidas(String texto)
     {
         //Si texto es diferente de null llenar lista
         if(texto != null)
@@ -29,7 +31,7 @@ public class Lista
             String[] arregloLista = texto.split("(\\n)+");
             for(int i = 0; i < arregloLista.length; i++)
             {
-                lista.add(arregloLista[i].replace("\r", ""));
+                lista.add(new Palabra(arregloLista[i].replace("\r", "")));
             }
 
         }else{// de lo contrario
@@ -38,17 +40,82 @@ public class Lista
 
     }// fin del metodo llenarLista
 
+
+
+    //metodo que llenar una List a partir de un String obtenido de un archivo txt o un String
+    public void  llenarListaProhibidas(String texto)
+    {
+        //Si texto es diferente de null llenar lista
+        if(texto != null)
+        {
+            String[] arregloLista = texto.split("(\\n)+");
+            for(int i = 0; i < arregloLista.length; i++)
+            {
+                listaProhibidas.add(new Palabra(arregloLista[i].replace("\r", "")));
+            }
+
+        }else{// de lo contrario
+            System.out.println("Lista es null");
+        }// fin de else - if
+
+    }// fin del metodo llenarLista
+
+
     //se obitne una List
-    public List<String> obtenerLista(){
+    public List<Palabra> obtenerListaConocidas(){
         return lista;
     }//fin del metodo obtenerLista
 
+    //se obtiene una List de palabrasProhibidas
+    public List<Palabra> obtenerListaProhibidas(){
+        return listaProhibidas;
+    }// fin del metodo obtenerLista
+
 
     //metodo que busca un elemento en una Lista
-    public boolean estaElemento(String elemento)
+    public static boolean estaElemento(Oracion obj)
     {
-        return obtenerLista().contains(elemento);
-    }
+        boolean esConocida = false;
+        for (Palabra palabra : obj.obtenerPalabra())
+        {
+            //System.out.println(obtenerLista().equals(palabra.obtenerPalabra()));
+            for(int i = 0; i < lista.size(); i++)
+            {
+                //System.out.println(obtenerListaConocidas().get(i).obtenerPalabra().equals(palabra.obtenerPalabra()));
+                if (lista.get(i).obtenerPalabra().equals(palabra.obtenerPalabra()))
+                {
+                    System.out.println(palabra.obtenerPalabra());
+                    esConocida = true;
+                }
+            }// fin del for interno
+        }// fin del for externo
+        return esConocida;
+    }// fin de estaElemento
+
+    public static boolean censurarPalabra(Palabra palabra)
+    {
+        boolean esPrhoibida = false;
+
+
+        //System.out.println(obtenerLista().equals(palabra.obtenerPalabra()));
+        for(int i = 0; i < listaProhibidas.size(); i++)
+        {
+            //System.out.println(obtenerLista().get(i).obtenerPalabra().equals(palabra.obtenerPalabra()));
+            if(listaProhibidas.get(i).obtenerPalabra().equals(palabra.obtenerPalabra()))
+            {
+                System.out.println("Palabras censuradas: " + palabra.obtenerPalabra());
+                esPrhoibida = true;
+            }
+        }// fin del for interno
+
+        /*
+        for (Palabra palabra : obj.obtenerPalabra())
+        {
+
+        }// fin del for externo
+        */
+        return esPrhoibida;
+    }// fin del metodo censurarPalabra
 
 
 

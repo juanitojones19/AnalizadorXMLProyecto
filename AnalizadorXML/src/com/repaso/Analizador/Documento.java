@@ -15,6 +15,7 @@ public class Documento implements Analizable
     private int contadorArticulos; //variable que almacena el numeor total de articulos
     private int contadorOraciones;
     private int contadorParrafos;
+    private int contadorConocidas;
 
 
     public Documento(String texto)
@@ -29,6 +30,7 @@ public class Documento implements Analizable
             contadorVocales += listaParrafo.get(i).contarVocales();
             contadorArticulos += listaParrafo.get(i).contarArticulos();
             contadorOraciones += listaParrafo.get(i).obtenerNumeroOraciones();
+            contadorConocidas += listaParrafo.get(i).obtenerConocidas();
         }
     }
 
@@ -55,6 +57,10 @@ public class Documento implements Analizable
 
     public int contarParrafos(){
         return contadorParrafos;
+    }
+
+    public int contarConocidas(){
+        return contadorConocidas;
     }
 
     public String[] separar(String texto) {
