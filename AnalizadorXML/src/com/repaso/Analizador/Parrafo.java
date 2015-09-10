@@ -14,6 +14,7 @@ public class Parrafo implements Analizable{
     private int contadorArticulos;
     private int numeroOraciones; // almacena el numero de oraciones en el parrafo
 	private int numeroConocidas;
+	private int numeroPalabrasCensuradas;
 
 	
 	public Parrafo(String entrada)
@@ -25,8 +26,8 @@ public class Parrafo implements Analizable{
 		for(int i = 0; i < arregloOraciones.length; i++ )
 		{
 
-			listaOraciones.add(new Oracion(arregloOraciones[i]));
-			totalPalabras += listaOraciones.get(i).contarPalabras();
+			//listaOraciones.add(new Oracion(arregloOraciones[i]));
+
 
 			// si hay palabras en oracion conocidas las cuenta
 			if(Lista.estaElemento(new Oracion(arregloOraciones[i])))
@@ -34,11 +35,29 @@ public class Parrafo implements Analizable{
 				numeroConocidas += 1;
 			}
 
+			// si la oracion tiene una palabra prohibida
+			if(Lista.esProhibida(new Oracion(arregloOraciones[i])))
+			{
+				numeroPalabrasCensuradas += 1;//con el numero de palabras prohibidas
+				//censuerarla
+				listaOraciones.add(Lista.censurarPalabra(new Oracion(arregloOraciones[i])));
+			}else{// de loc ontrario no se censura
+				listaOraciones.add(new Oracion(arregloOraciones[i]));
+			}
+
+			totalPalabras += listaOraciones.get(i).contarPalabras();
+
+			//censuar la palabra en la oracion
+
             //almancena el numero total de  vocales ene l parrafo
             contadorVocales += listaOraciones.get(i).contarVocales();
 
             //almacena el numero total de articulos en el parrafo;
             contadorArticulos += listaOraciones.get(i).contarArticulos();
+
+			//almacen el numero total de palabras censuradas en el parrafo;
+			numeroPalabrasCensuradas += listaOraciones.get(i).contarPalabrasCensuradas();
+
 		}
 	}
 
@@ -87,6 +106,10 @@ public class Parrafo implements Analizable{
     {
         return  numeroOraciones;
     }
+
+	public int obtenerNumeroPalabrasCensuradas(){
+		return numeroPalabrasCensuradas;
+	}
 
     public List<Oracion> obtenerListaOraciones()
     {

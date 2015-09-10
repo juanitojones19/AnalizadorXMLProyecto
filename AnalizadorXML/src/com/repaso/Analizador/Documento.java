@@ -9,13 +9,15 @@ import java.util.Map;
  */
 public class Documento implements Analizable
 {
-    private int contadorParrafo;// variable que almacena elnumero total de parrafos
+    private int contadorPalabra;// variable que almacena elnumero total de parrafos
     private List<Parrafo> listaParrafo = new ArrayList<Parrafo>();
     private int contadorVocales;// variable que almacena el numero total de vocales
     private int contadorArticulos; //variable que almacena el numeor total de articulos
     private int contadorOraciones;
     private int contadorParrafos;
     private int contadorConocidas;
+    private int contadorDesconocidas;
+    private int contadorPalabrasCensuradas;
 
 
     public Documento(String texto)
@@ -26,12 +28,14 @@ public class Documento implements Analizable
         for ( int i = 0; i < arregloParrafos.length; i++  )
         {
             listaParrafo.add(new Parrafo(arregloParrafos[i]));
-            contadorParrafo += listaParrafo.get(i).contarPalabras();
+            contadorPalabra += listaParrafo.get(i).contarPalabras();
             contadorVocales += listaParrafo.get(i).contarVocales();
             contadorArticulos += listaParrafo.get(i).contarArticulos();
             contadorOraciones += listaParrafo.get(i).obtenerNumeroOraciones();
             contadorConocidas += listaParrafo.get(i).obtenerConocidas();
+            contadorPalabrasCensuradas += listaParrafo.get(i).obtenerNumeroPalabrasCensuradas();
         }
+        contadorDesconocidas = contadorPalabra - contadorConocidas;
     }
 
     public boolean esEOF(String palabra) {
@@ -43,7 +47,7 @@ public class Documento implements Analizable
     }
 
     public int contarPalabras() {
-        return contadorParrafo;
+        return contadorPalabra;
     }
 
     public int contarArticulos() {
@@ -61,6 +65,14 @@ public class Documento implements Analizable
 
     public int contarConocidas(){
         return contadorConocidas;
+    }
+
+    public int contarDesconocidas(){
+        return contadorDesconocidas;
+    }
+
+    public int contarPalabrasCensuradas(){
+        return contadorPalabrasCensuradas;
     }
 
     public String[] separar(String texto) {

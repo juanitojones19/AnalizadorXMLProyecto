@@ -28,23 +28,22 @@ public class Analizador {
 		System.out.println("total palabras: " + parrafoMultiLinea.contarPalabras());
 		*/
 		//lista
-		LectorArchivo leerLista = new LectorArchivo("/Users/Juanito/Documents/palabrasConocidas.txt");
-		LectorArchivo leerProhibidas = new LectorArchivo("/Users/Juanito/Documents/palabrasProhibidas.txt");
+		LectorArchivo leerLista = new LectorArchivo("/Users/JC/Documents/palabrasConocidas.txt");
+		LectorArchivo leerProhibidas = new LectorArchivo("/Users/JC/Documents/palabrasProhibidas.txt");
 		Lista diccionario = new Lista(leerLista.obtenerTexto(), leerProhibidas.obtenerTexto());
+		//diccionario.censurarPalabra(new Oracion("ahi te va la lanza del foro"));
+		//Lista.censurarPalabra(new Oracion("ahi te va la lanza del foro"));
 
 
-		LectorArchivo lectorArchivo = new LectorArchivo("/Users/Juanito/Documents/Parrafo.txt");
+		LectorArchivo lectorArchivo = new LectorArchivo("/Users/JC/Documents/Parrafo.txt");
 		//LectorArchivo lectorArchivo = new LectorArchivo("/Users/JC/Documents/Parrafo.txt");
 		//Parrafo parrafoArchivo = new Parrafo(lectorArchivo.obtenerTexto());
 
 		//archivo
         Documento documento = new Documento(lectorArchivo.obtenerTexto());
-        //System.out.println("Numero de Parrafos: " + documento.contarParrafos());
-        //System.out.println("Numero de Oraciones: " + documento.contarOraciones());
-        //System.out.println("Numero de palabras: " + documento.contarPalabras());
-        //System.out.println("Numero de vocales: " + documento.contarVocales());
-        //System.out.println("Numero de articulos: " + documento.contarArticulos());
+
 		System.out.println("Numero de Conocidas: " + documento.contarConocidas());
+		System.out.println("Numero de Censuradas: " + documento.contarPalabrasCensuradas());
 
 		//Lista listaProhibidas = new Lista(leerProhibidas.obtenerTexto());
 

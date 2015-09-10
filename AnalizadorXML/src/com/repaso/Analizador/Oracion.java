@@ -12,6 +12,7 @@ public class Oracion implements Analizable
 	private List<Palabra> listaPalabras = new ArrayList<Palabra>();
 	private int contadorVocales;
     private int contadorArticulos;
+	private int contadorPalabrasCensuradas;
 	private final String[] articulos = {"el", "la","los", "las", "un", "una", "unos", "unas"};
 
 	
@@ -22,17 +23,7 @@ public class Oracion implements Analizable
 		String[] arregloPalabras = separar(oracion);
 		for(int i = 0; i < arregloPalabras.length; i++)
 		{
-			//impresion de consola de prueba
-			if(Lista.censurarPalabra(new Palabra(arregloPalabras[i])))
-			{
-				System.out.println("Palabra conocida " + arregloPalabras[i] + "*****");
-				listaPalabras.add(new Palabra("*****"));
-			}else{
-				listaPalabras.add(new Palabra(arregloPalabras[i]));
-				//totalPalabras++;
-			}
-
-
+			listaPalabras.add(new Palabra(arregloPalabras[i]));
 
             contadorVocales += listaPalabras.get(i).contarVocales();
 
@@ -92,6 +83,10 @@ public class Oracion implements Analizable
         // TODO Auto-generated method stub
         return contadorArticulos;
     }
+	public int contarPalabrasCensuradas()
+	{
+		return contadorPalabrasCensuradas;
+	}
 
 	public String obtenerOracion()
 	{

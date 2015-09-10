@@ -65,7 +65,15 @@ public class ArchivoXML
     public void crearTagAnalizar(Documento objDocument)
     {
         Element analisis = doc.createElement("Analisis");
-        analisis.setAttribute("Parrafos" , Integer.toString(objDocument.contarPalabras()));;
+        analisis.setAttribute("parrafos" , Integer.toString(objDocument.contarParrafos()));
+        analisis.setAttribute("oraciones" , Integer.toString(objDocument.contarOraciones()));
+        analisis.setAttribute("palabras" , Integer.toString(objDocument.contarPalabras()));
+        analisis.setAttribute("articulos" , Integer.toString(objDocument.contarArticulos()));
+        analisis.setAttribute("vocales" , Integer.toString(objDocument.contarVocales()));
+        analisis.setAttribute("conocidas" , Integer.toString(objDocument.contarConocidas()));
+        analisis.setAttribute("desconocidas" , Integer.toString(objDocument.contarDesconocidas()));
+        analisis.setAttribute("censuradas" , Integer.toString(objDocument.contarPalabrasCensuradas()));
+        documento.appendChild(analisis);
     }
 
     //crear documento XML

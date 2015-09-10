@@ -84,7 +84,7 @@ public class Lista
                 //System.out.println(obtenerListaConocidas().get(i).obtenerPalabra().equals(palabra.obtenerPalabra()));
                 if (lista.get(i).obtenerPalabra().equals(palabra.obtenerPalabra()))
                 {
-                    System.out.println(palabra.obtenerPalabra());
+                    //System.out.println(palabra.obtenerPalabra());
                     esConocida = true;
                 }
             }// fin del for interno
@@ -92,34 +92,65 @@ public class Lista
         return esConocida;
     }// fin de estaElemento
 
-    public static boolean censurarPalabra(Palabra palabra)
+    public static boolean esProhibida(Oracion obj)
     {
         boolean esPrhoibida = false;
 
+        for( Palabra palabra : obj.obtenerPalabra() )
+        {
+            //System.out.println(obtenerLista().equals(palabra.obtenerPalabra()));
+            for(int i = 0; i < listaProhibidas.size(); i++)
+            {
+                //System.out.println(obtenerLista().get(i).obtenerPalabra().equals(palabra.obtenerPalabra()));
+                if(listaProhibidas.get(i).obtenerPalabra().equals(palabra.obtenerPalabra()))
+                {
+                    //System.out.println("Palabras censuradas: " + palabra.obtenerPalabra());
+                    esPrhoibida = true;
+                }
+            }// fin del for interno
+        }
 
+        return esPrhoibida;
+    }// fin del metodo censurarPalabra
+
+
+    public static Oracion censurarPalabra(Oracion oracion)
+    {
+        Oracion nuevaOracion = null;
+        String acumuladorPalabras = "";
+
+        for (int i = 0; i < oracion.obtenerPalabra().size(); i++)
+        {
+
+            if(esCensurada(oracion.obtenerPalabra().get(i)))
+            {
+                //System.out.print(oracion.obtenerPalabra().get(i).obtenerPalabra() + "*****");
+                acumuladorPalabras += "*****" + " ";
+            }else{
+                acumuladorPalabras += oracion.obtenerPalabra().get(i).obtenerPalabra() + " ";
+            }
+        }
+        //System.out.println(acumuladorPalabras);
+
+        return new Oracion(acumuladorPalabras);
+    }// fin del metodo censurarPalabra
+
+    private static boolean esCensurada(Palabra palabra)
+    {
+        boolean esPrhoibida = false;
         //System.out.println(obtenerLista().equals(palabra.obtenerPalabra()));
         for(int i = 0; i < listaProhibidas.size(); i++)
         {
             //System.out.println(obtenerLista().get(i).obtenerPalabra().equals(palabra.obtenerPalabra()));
             if(listaProhibidas.get(i).obtenerPalabra().equals(palabra.obtenerPalabra()))
             {
-                System.out.println("Palabras censuradas: " + palabra.obtenerPalabra());
+                //System.out.println("Palabras censuradas: " + palabra.obtenerPalabra());
                 esPrhoibida = true;
             }
         }// fin del for interno
 
-        /*
-        for (Palabra palabra : obj.obtenerPalabra())
-        {
-
-        }// fin del for externo
-        */
         return esPrhoibida;
-    }// fin del metodo censurarPalabra
-
-
-
-
+    }
 
 
 }
